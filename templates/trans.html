@@ -1,0 +1,42 @@
+﻿{% load static %}
+<!doctype html>
+<html>
+<head>
+ <title>trans</title>
+ <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<nav>
+  <label class="logo">NVR Banking System</label>
+  <ul>
+    <li><a href="home">Home</a></li>
+    <li><a href="customers">Customers</a></li>
+    <li><a href="trans">Transection</a></li>
+  </ul>
+</nav>
+<div>
+ <p class="p1">Transections Details</p>
+   <table class="table1">
+     <tr>
+       <th>S.NO</th>
+       <th>NAME</th>
+       <th>EMAIL</th>
+       <th>AMT DEBITED</th>
+       <th>AMT CREDITED</th>
+       <th>ACC. BAL</th>
+     </tr>
+    {% for i in trans %}
+     <tr>
+       <td>{{i.id}}</td>
+       <td>{{i.name}}</td>
+       <td>{{i.email}}</td>
+       <td>{{i.deb_amt}}</td>
+       <td>{{i.cr_amt}}</td>
+       <td>{{i.ac_bal}}</td>
+     </tr>
+    {% endfor %}
+   </table>
+ <label id="Refresh"><a href="trans">Refresh</a></label>
+</div>
+</body>
+</html>

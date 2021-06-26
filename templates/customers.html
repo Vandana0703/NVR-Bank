@@ -1,0 +1,53 @@
+﻿{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+ <title>customers</title>
+ <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<nav>
+  <label class="logo">NVR Banking System</label>
+  <ul>
+    <li><a href="home">Home</a></li>
+    <li><a href="customers">Customers</a></li>
+    <li><a href="trans">Transection</a></li>
+  </ul>
+</nav>
+<aside>
+ <div class="center">
+  <h2>SEND MONEY</h2>
+   <form method="post">{% csrf_token %}
+     Email:    <input type='text' name='semail' placeholder='Enter your email'><br><br>
+    Amount:   <input type='text' name='amt' placeholder='Enter Amount'><br><br>
+   <select id="email" name='email'>
+    <option value="nagavandana0703@gmail.com">Select receiver email</option>
+    {% for i in customers %}
+    <option value="{{i.email}}">{{i.name}}</option>
+    {% endfor %}
+   </select><br><br>
+   <input type="submit" name="submit" value="SEND">
+   </form>
+ </div>
+</aside>
+<div>
+ <p class="p1">Customers Details</p>
+   <table class="table1">
+     <tr>
+       <th>S.NO</th>
+       <th>NAME</th>
+       <th>EMAIL</th>
+       <th>AVAIL BALANCE</th>
+     </tr>
+    {% for i in customers %}
+     <tr>
+       <td>{{i.id}}</td>
+       <td>{{i.name}}</td>
+       <td>{{i.email}}</td>
+       <td>{{i.avail_bal}}</td>
+     </tr>
+    {% endfor %}
+   </table>
+</div>
+</body>
+</html>
